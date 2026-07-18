@@ -24,7 +24,7 @@ jobs:
       url: ${{ steps.deploy.outputs.deployment-url }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup project
         uses: ./.github/actions/setup-project
