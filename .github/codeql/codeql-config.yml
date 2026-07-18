@@ -1,0 +1,23 @@
+name: CodeQL Configuration
+
+paths:
+  - apps/*/src/**
+  - packages
+
+paths-ignore:
+  - test
+  - '**/test/**'
+  - 'test/**'
+  - '**/__tests__/**'
+  - '**/*.test.ts'
+  - '*.spec.ts'
+  - '**/*.min.js'
+  - 'dist/**'
+  - 'build/**'
+  - 'coverage/**'
+  - '*.md'
+  - '*.txt'
+  - '*.pdf'
+  - '*.png'
+  - '*.jpg'
+  - '*.ico'

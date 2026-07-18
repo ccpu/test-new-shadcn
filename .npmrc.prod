@@ -1,0 +1,13 @@
+# Production .npmrc configuration
+#
+# ⚠️  SECURITY WARNING: DO NOT PUT SECRETS IN THIS FILE!
+# This file is copied into Docker images and should contain ONLY:
+# - Registry URLs (without auth tokens)
+# - Package configuration
+# - Non-sensitive settings
+#
+# For authentication tokens and secrets, use Docker secrets:
+# docker build --secret id=npmrc,src=.npmrc.secrets .
+
+# Package manager settings
+node-linker=hoisted

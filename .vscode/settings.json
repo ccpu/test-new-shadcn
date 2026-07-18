@@ -1,0 +1,7 @@
+{
+  "cSpell.words": ["nativewind"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.configFile": "apps/web/src/app/globals.css"
+}

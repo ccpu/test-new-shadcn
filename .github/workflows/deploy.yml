@@ -1,0 +1,60 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Choose an environment to deploy to
+        required: true
+        default: production
+        type: choice
+        options:
+          - production
+          - preview
+
+jobs:
+  ci:
+    name: Run CI Checks
+    uses: ./.github/workflows/ci.yml
+  # Job for main branch pushes and manual triggers - build and deploy
+  deploy:
+    if: github.repository != 'ccpu/nextjs-cloudflare-monorepo-template' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    name: Deploy
+    needs: ci
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+        with:
+          build-web: 'true'
+
+      - name: Validate custom domain
+        run: pnpm --filter web validate:domain
+
+      - name: Deploy to Cloudflare Workers
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+          workingDirectory: apps/web
+          packageManager: pnpm
+
+      - name: Print deployment information
+        if: success()
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌍 Deployment URL: $DEPLOYMENT_URL"

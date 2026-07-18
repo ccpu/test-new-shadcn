@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#18181B"/>
+  <!-- Next.js logo style: black circle with white N -->
+  <circle cx="350" cy="315" r="80" fill="#fff"/>
+  <text x="350" y="335" text-anchor="middle" fill="#18181B" font-size="72" font-family="Arial, Helvetica, sans-serif" font-weight="bold">N</text>
+  <!-- Turbo style: yellow lightning bolt -->
+  <polygon points="600,235 640,315 610,315 650,395 570,295 600,295" fill="#FACC15"/>
+  <!-- pnpm style: green hexagon -->
+  <polygon points="900,275 940,315 900,355 860,315" fill="#10B981"/>
+  <text x="900" y="325" text-anchor="middle" fill="#18181B" font-size="36" font-family="Arial, Helvetica, sans-serif" font-weight="bold">pnpm</text>
+  <!-- Title -->
+  <text x="50%" y="90%" text-anchor="middle" fill="#fff" font-size="48" font-family="Arial, Helvetica, sans-serif">Next.js • Turbo • pnpm</text>
+</svg>
